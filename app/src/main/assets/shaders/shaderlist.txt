@@ -1,0 +1,60 @@
+// this contains a manifest of shaders, this is just for reference only
+// this enga Android does not read this file, engw webGL engine does read this file
+// S marks the same between web and android
+// T means new shaders copied from web to android and not yet tested
+
+// 0 input textures (4)
+S cvert
+S flat
+S red // comment differences
+S shadowmapbuildnotex // precision differences
+
+// 1 input texture (14)
+S basic
+S bright
+S diffusep
+S diffusespecp
+S diffusespecv
+S diffusev
+S font2c
+S imageblur
+S nopers
+S pinch
+S shadowmapbuild // precision differences
+S shadowmapshow // precision differences
+S tex // comment differences
+S texc
+
+// 2 input textures (11)
+T blend2
+S blend2b // comment differences
+S blend2b2uvs // comment differences
+T blend2bc
+T blend2u
+S daynight
+S lightmap
+T redblue
+S shadowmapuse // precision differences
+T shadowmapuseblur
+S shadowmapusec // precision differences
+
+// 3 input textures (1)
+T blend3
+
+// 4 input textures (4)
+T blend4
+T blend4uv
+T interleave4
+T tex4
+
+// 16 input textures (1)
+T blend16
+
+// cubemap texture (5)
+S cubemap
+S cubemaptest
+S envmapghostv
+S envmapp
+S envmapv
+
+// 40 shaders total

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/state"
+    android:orientation="vertical"
+    android:textColor="#000"
+    android:background="#8fff"
+    android:textSize="24dp"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:gravity="center" />

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+	<!--
+	<com.mperpetuo.openglgallery.MyGLSurfaceView
+		android:id="@+id/surfaceoverlay2"
+		android:layout_width="500px"
+		android:layout_height="300px"
+		android:layout_marginLeft="400dip"
+		android:layout_marginTop="0dip" />
+-->
+	<com.mperpetuo.openglgallery.MyGLSurfaceView
+		android:id="@+id/surfaceoverlay1"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:layout_marginLeft="0dip"
+		android:layout_marginTop="0dip" />
+
+	<com.mperpetuo.openglgallery.MySpinner
+		android:id="@+id/stateSelect"
+		android:background="#8fff"
+		android:layout_width="300dp"
+		android:layout_height="wrap_content" />
+
+	<TextView
+		android:visibility="visible"
+		android:text="FPS"
+		android:gravity="center"
+		android:layout_gravity="bottom"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/FPSmeter"
+		android:background="#8fff"
+		android:textColor="#f000"
+		android:layout_margin="3dp" />
+
+	<SeekBar
+		android:id="@+id/gain_seekbar"
+		android:visibility="gone"
+		android:layout_width="250dp"
+		android:layout_height="40dp"
+		android:layout_gravity="center_horizontal|bottom"
+		android:layout_marginBottom="50dp"
+		></SeekBar>
+
+	<SeekBar
+		android:id="@+id/conv_seekbar"
+		android:visibility="gone"
+		android:layout_width="250dp"
+		android:layout_height="40dp"
+		android:layout_gravity="center_horizontal|bottom"
+		android:layout_marginBottom="10dp"
+		></SeekBar>
+
+	<Button
+		android:visibility="gone"
+		android:text="2D"
+		android:textSize="10sp"
+		android:layout_width="60dp"
+		android:layout_height="30dp"
+		android:layout_marginLeft="3dp"
+		android:layout_marginBottom="30dp"
+		android:layout_gravity="left|bottom"
+		android:id="@+id/button3D" />
+	<LinearLayout
+		android:id="@+id/simpleUI"
+		android:visibility="visible"
+		android:orientation="vertical"
+		android:layout_width="150dp"
+		android:layout_height="match_parent"
+		android:layout_gravity="right" >
+
+
+
+	</LinearLayout>
+</FrameLayout>
