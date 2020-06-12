@@ -53,11 +53,11 @@ public class SimpleUI {
                 public void run() {
                     textView = new TextView(Utils.getContext());
                     textView.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
-                    int textHeight = MainActivity.oldDevice ? 35 : 110;
+                    int textHeight = MainActivity.oldDevice ? 25 : 80;
                     textView.setHeight(textHeight);
                     textView.setTextSize(16);
                     textView.setGravity(Gravity.CENTER);
-                    textView.setBackgroundColor(Color.argb(0x80,0xff,0xff,0xff));
+                    textView.setBackgroundColor(Color.argb(0xc0,0xff,0xff,0xff));
                     textView.setTextColor(Color.BLACK);
                     ViewGroup.MarginLayoutParams params = new LinearLayout.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -117,18 +117,20 @@ public class SimpleUI {
                     });
                     // define the style of the button
                     button.setWidth(LinearLayout.LayoutParams.WRAP_CONTENT);
-                    int butHeight = MainActivity.oldDevice ? 45 : 3;
-                    //butHeight = 10;
-                    button.setHeight(butHeight); // 2.3.3
+                    int butHeight = MainActivity.oldDevice ? 45 : 80;
+                    //butHeight = 1;
+                    button.setHeight(butHeight);
+                    button.setTextSize(11);
                     button.setGravity(Gravity.CENTER);
-                    button.setBackgroundColor(Color.argb(0x80,0xff,0x40,0x40));
-                    button.setTextColor(Color.BLACK);
+                    button.setBackgroundColor(Color.argb(0xc0,0x99,0x00,0x40));
+                    button.setTextColor(Color.WHITE);
                     ViewGroup.MarginLayoutParams params = new LinearLayout.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT
                     );
-                    int marg = 3;
+                    int marg = 6;
                     params.setMargins(marg,marg,marg,marg);
+                    params.height = butHeight;
                     button.setLayoutParams(params);
                     Log.d(TAG,"adding button to view");
                     uiLayout.addView(button);

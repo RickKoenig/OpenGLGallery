@@ -355,7 +355,7 @@ public class ModelUtil {
 
 
 // switched the front and back because we're outside the box (for skybox textures)
-    private static float[] prismMeshBaseVerts = {
+    public static final float[] prismMeshBaseVerts = {
         // front (POSZ) switched
         -1, 1, -1,
         1, 1, -1,
@@ -388,7 +388,7 @@ public class ModelUtil {
         1, -1, 1
     };
 
-    private static float[] prismMeshBaseUvs = {
+    public static final float[] prismMeshBaseUvs = {
         // front
         0, 0,
         1, 0,
@@ -421,7 +421,7 @@ public class ModelUtil {
         1, 1
     };
 
-    private static float[] prismMeshBaseNorms = {
+    public static final float[] prismMeshBaseNorms = {
             // front
             0, 0, -1,
             0, 0, -1,
@@ -454,7 +454,7 @@ public class ModelUtil {
             0, -1, 0
     };
 
-    private static short[] prismMeshBaseFaces =  {
+    public static final short[] prismMeshBaseFaces =  {
         // front
         0, 1, 2,
         3, 2, 1,

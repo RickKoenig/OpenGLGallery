@@ -158,7 +158,7 @@ public abstract class ModelBase {
     }
 
     // set model verts (3 floats each)
-    void setverts(float[] vertsa) {
+    public void setverts(float[] vertsa) {
         if (vertsa.length%3 != 0)
             Utils.alert("verts array not a multiple of 3 on model '" + name + "' length " + vertsa.length);
         verts = vertsa;
@@ -166,7 +166,7 @@ public abstract class ModelBase {
     };
 
     // set model norms (3 floats each)
-    void setnorms(float[] normsa) {
+    public void setnorms(float[] normsa) {
         if (normsa.length%3 != 0)
             Utils.alert("norms array not a multiple of 3 on model '" + name + "' length " + normsa.length);
         norms = normsa;
@@ -175,7 +175,7 @@ public abstract class ModelBase {
     };
 
     // set model uvs (2 floats each)
-    void setuvs(float[] uvsa) {
+    public void setuvs(float[] uvsa) {
         if (uvsa.length%2 != 0)
             Utils.alert("uvs array not a multiple of 2 on model '" + name + "' length " + uvsa.length);
         uvs = uvsa;
@@ -183,7 +183,7 @@ public abstract class ModelBase {
             Utils.alert("vert uv mismatch on model '" + name + "'");
     };
 
-    void setuvs2(float[] uvs2a) {
+    public void setuvs2(float[] uvs2a) {
         if (uvs2a.length%2 != 0)
             Utils.alert("uvs2 array not a multiple of 2 on model '" + name + "' length " + uvs2a.length);
         uvs2 = uvs2a;
@@ -192,7 +192,7 @@ public abstract class ModelBase {
     };
 
     // set model cverts (4 floats each)
-    void setcverts(float[] cvertsa) {
+    public void setcverts(float[] cvertsa) {
         if (cvertsa.length%4 != 0)
             Utils.alert("cverts array not a multiple of 4 on model '" + name + "' length " + cvertsa.length);
         cverts = cvertsa;
@@ -201,7 +201,7 @@ public abstract class ModelBase {
     };
 
     // set model faces (1 short each)
-    void setfaces(short[] facesa) {
+    public void setfaces(short[] facesa) {
         if (facesa.length%3 != 0)
             Utils.alert("faces array not a multiple of 3 on model '" + name + "' length " + facesa.length);
         faces = facesa;

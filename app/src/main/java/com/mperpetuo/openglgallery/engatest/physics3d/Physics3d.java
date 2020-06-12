@@ -3,6 +3,7 @@ package com.mperpetuo.openglgallery.engatest.physics3d;
 import android.util.Log;
 
 import com.mperpetuo.openglgallery.enga.*;
+import com.mperpetuo.openglgallery.engatest.HelperObj;
 import com.mperpetuo.openglgallery.input.*;
 
 import java.util.ArrayList;
@@ -31,6 +32,10 @@ public class Physics3d extends State {
     final int NCORNERS = 8;
     final int FIRSTMESHOBJ = 1;
     private SimpleUI.UIPrintArea scenearea;
+
+    private HelperObj ho;
+
+    static boolean showVector = false;
 
     private Runnable resetScene = new Runnable() {
         @Override
@@ -64,6 +69,12 @@ public class Physics3d extends State {
     private int numscenes;
     private static float flyCamSpeed;
 
+    private Runnable showVectors = new Runnable() {
+        @Override
+        public void run() {
+            showVector = !showVector;
+        }
+    };
 
     // phyobjects
 
@@ -1181,6 +1192,20 @@ public class Physics3d extends State {
             VEC.copy4(po.s0.rot,po.t.qrot);
             po.t.scale = new float[3];
             VEC.copy3(po.scale,po.t.scale);
+
+            if (showVector) {
+                float scaleVec = .0055f;
+                float scaleRotVel = 10.0f;
+                VEC p1 = new VEC();
+                p1.x = po.st.pos.x + po.st.angmomentum.x*scaleVec;
+                p1.y = po.st.pos.y + po.st.angmomentum.y*scaleVec;
+                p1.z = po.st.pos.z + po.st.angmomentum.z*scaleVec;
+                ho.addvector(roottree, po.st.pos, p1, Colors.F32CYAN); // ang mom
+                p1.x = po.st.pos.x + po.st.rotvel.x*scaleRotVel;
+                p1.y = po.st.pos.y + po.st.rotvel.y*scaleRotVel;
+                p1.z = po.st.pos.z + po.st.rotvel.z*scaleRotVel;
+                ho.addvector(roottree, po.st.pos, p1, Colors.F32LIGHTRED); // rot vel
+            }
 /*            po.t.trans.copy(po.st.pos; // world rel
             po.t.scale.copy{po.scale; // world rel
             po.t.rot.copy = po.st.rot; */
@@ -1347,9 +1372,10 @@ public class Physics3d extends State {
         SimpleUI.setbutsname("physics3d");
         // less,more printarea for sponge
         scenearea = SimpleUI.makeaprintarea("scene: ");
-        SimpleUI.makeabut("reset scene",resetScene/*morelevel*/);
         SimpleUI.makeabut("next scene",nextScene/*morelevel*/);
+        SimpleUI.makeabut("reset scene",resetScene/*morelevel*/);
         SimpleUI.makeabut("prev scene",prevScene/*lesslevel*/);
+        SimpleUI.makeabut("show vectors",showVectors/*lesslevel*/);
 
         // main scene
         roottree = new Tree("roottree");
@@ -1392,6 +1418,8 @@ public class Physics3d extends State {
         initphysicsobjects(ascene);
         scenearea.draw(ascene);
         Utils.popdir();
+
+        ho = new HelperObj();
     }
 
     int slow;
@@ -1403,7 +1431,9 @@ public class Physics3d extends State {
         InputState ir = Input.getResult();
         // proc
         if (slow == 0) {
+            ho.reset();
             procphysicsobjects(timestep, iterations);
+            ho.addvector(roottree,new VEC(0,2,0),new VEC(30,2,0),Colors.F32CYAN);
             slow = 2;
         }
         --slow;
@@ -1431,6 +1461,8 @@ public class Physics3d extends State {
         Log.i(TAG, "before roottree glFree");
         roottree.log();
         GLUtil.logrc(); // show all allocated resources
+        ho.glfree();
+        ho = null;
         // cleanup
 
 
