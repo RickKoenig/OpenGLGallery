@@ -92,7 +92,7 @@ public class HelperObj {
         for (i=0;i<helplist.size();++i) {
             Tree tre = helplist.get(i);
             tre.glFree();
-            //tre.unlinkchild();
+            tre.unlinkchild();
         }
         //vector<tree2*>::iterator i;
         //for (i=helplist.begin();i!=helplist.end();++i)
