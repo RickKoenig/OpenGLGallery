@@ -5,6 +5,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.util.Log;
 
+import com.mperpetuo.openglgallery.SortTest;
 import com.mperpetuo.openglgallery.enga.GLUtil;
 import com.mperpetuo.openglgallery.enga.Mesh;
 import com.mperpetuo.openglgallery.enga.Model;
@@ -20,6 +21,8 @@ import com.mperpetuo.openglgallery.input.InputState;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -347,6 +350,110 @@ public class Scratch extends State {
         Log.i(TAG, "END testZigzag");
     }
 
+
+
+    // INTERVALS
+
+    //Given a collection of intervals(inclusive), merge all overlapping intervals.
+    //Example: Input[[8, 10], [1, 4], [3, 6], [15, 18]] Return[[8, 10], [1, 6], [15, 18]]
+
+    static Comparator<int[]> compareFirst = new Comparator<int[]>() {
+        public int compare(int[] a, int[] b) {
+            return a[0] - b[0];
+        }
+    };
+
+    ArrayList<int[]> mergeIntervals(ArrayList<int[]> inputIntervals) {
+        ArrayList<int[]> output = new ArrayList<>();
+        if (inputIntervals.isEmpty())
+            return output;
+        ArrayList<int[]> sortedIntervals = (ArrayList<int[]>) inputIntervals.clone();
+        Collections.sort(sortedIntervals,compareFirst);
+
+        int[] working = (int[]) sortedIntervals.get(0).clone();
+        for (int i = 1; i < sortedIntervals.size(); ++i) {
+            int[] intv = sortedIntervals.get(i);
+            // check for zero size interval
+            if (intv[0] == intv[1])
+                continue;
+            if (intv[0] <= working[1]) { // next interval is inside first one
+                // merge overlapped intervals
+                if (intv[1] > working[1])
+                    working[1] = intv[1];
+            } else {
+                // add to list
+                output.add(working);
+                working = (int[]) sortedIntervals.get(i).clone();
+            }
+        }
+        if (working[0] != working[1])
+            output.add(working);
+        return output;
+    }
+
+    void printIntervals(String label,ArrayList<int[]> intv) {
+        Log.i(TAG,"interval '" + label + "'\n");
+        for (int i = 0; i < intv.size(); ++i) {
+            int[] v = intv.get(i);
+            Log.i(TAG,"\t[ " + v[0] + ", " + v[1] + " ]\n");
+        }
+    }
+
+    // run list tests
+    void testIntervals() {
+        Log.i(TAG,"START testIntervals\n");
+        ArrayList<ArrayList<int[]>> intvs = new ArrayList<ArrayList<int[]>>();
+        intvs.add(new ArrayList<int[]> ());
+        intvs.add(new ArrayList<int[]> (Arrays.asList(
+                new int[] {50,65}
+        )));
+        intvs.add(new ArrayList<int[]> (Arrays.asList(
+                new int[] {5,6},
+                new int[] {3,4}
+        )));
+        intvs.add(new ArrayList<int[]> (Arrays.asList(
+                new int[] {10,20},
+                new int[] {5,15}
+        )));
+        intvs.add(new ArrayList<int[]> (Arrays.asList(
+                new int[] {20,30},
+                new int[] {14,34}
+        )));
+        intvs.add(new ArrayList<int[]> (Arrays.asList(
+                new int[] {8,10},
+                new int[] {1,4},
+                new int[] {3,6},
+                new int[] {15,18}
+        )));
+        intvs.add(new ArrayList<int[]> (Arrays.asList(
+                new int[] {8,14},
+                new int[] {25,27},
+                new int[] {19,21},
+                new int[] {12,17},
+                new int[] {7,10},
+                new int[] {0,1},
+                new int[] {2,6},
+                new int[] {0,1},
+                new int[] {18,22},
+                new int[] {28,31},
+                new int[] {0,1},
+                new int[] {24,26},
+                new int[] {29,30},
+                new int[] {23,25},
+                new int[] {11,13},
+                new int[] {3,5},
+                new int[] {31,32}
+        )));
+        for (int i = 0; i < intvs.size(); ++i) {
+            ArrayList<int[]> intv = intvs.get(i);
+            printIntervals("input interval",intv);
+            ArrayList<int[]> intvOut = mergeIntervals(intv);
+            printIntervals("output interval", intvOut);
+            Log.i(TAG,"---------------------------------------\n");
+        }
+        Log.i(TAG,"END testIntervals\n");
+    }
+
 @Override
     public void init() {
         Log.i(TAG, "entering scratch");
@@ -354,6 +461,7 @@ public class Scratch extends State {
         testCopyCyclicGraph();
         testThreads();
         testZigzag();
+        testIntervals();
         // main scene
         roottree = new Tree("root");
         // build a planexy

@@ -32,6 +32,6 @@ public class StateList {
             "Lattice2D",
             "Lattice3D"
     };
-    public static String startState = "physics3d.Physics3d";
+    public static String startState = "Scratch";
 }
 
