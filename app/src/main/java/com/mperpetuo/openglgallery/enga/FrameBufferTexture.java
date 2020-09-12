@@ -32,7 +32,7 @@ public class FrameBufferTexture extends Texture {
         GLUtil.ignoreGLError(true);
         boolean ext1 = Main3D.hasFloatTextures;
         boolean ext2 = Main3D.hasFloatLinearTextures;
-        ext1 = false; // can't get float textures to work on emulator
+        //ext1 = false; // can't get float textures to work on emulator
         if (!ext1)
             Log.e(TAG,"no float textures");
         if (!ext2)

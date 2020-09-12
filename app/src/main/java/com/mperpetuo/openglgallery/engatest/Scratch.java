@@ -531,6 +531,7 @@ public class Scratch extends State {
 
         // setup camera, reset on exit, move back some LHC (left handed coords) to view plane
         ViewPort.mainvp.trans = new float[] {0,0,-2};
+        ViewPort.mainvp.clearcolor= new float[] {1,0,0,1};
     }
 
     @Override
